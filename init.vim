@@ -17,8 +17,13 @@ set shiftwidth=4
 set cursorline
 set numberwidth=6
 set softtabstop=4
+
 set smarttab
 set smartindent
+
+set smartcase
+set ignorecase
+
 set autoindent 
 set cindent 
 set backspace=indent
@@ -26,6 +31,10 @@ set backspace=indent
 set clipboard="unnamedplus"
 
 set mouse="a"
+
+set nohlsearch
+set incsearch
+set showmatch
 
 set background="dark"
 colorscheme desert
@@ -36,4 +45,7 @@ filetype plugin on
 filetype plugin indent on
 
 set packpath^=~/.vim/pack/vendor/start/
+set omnifunc=ccomplete#Complete
+set tags=~/.vim/tags,tags
+
 source ~/.vim/lsp.vim
