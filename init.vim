@@ -12,40 +12,40 @@ set nobackup
 set undofile
 set wrap
 
-set tabstop=4 expandtab
-set shiftwidth=4
-set cursorline
+set ignorecase
+
+const tab_alignment = 2
+
+execute 'set tabstop=' . tab_alignment " expandtab"
+execute "set shiftwidth=" . tab_alignment
+execute "set softtabstop=" .tab_alignment
+
 set numberwidth=6
-set softtabstop=4
+set cursorline
 
 set smarttab
 set smartindent
-
 set smartcase
-set ignorecase
 
 set autoindent 
 set cindent 
-set backspace=indent
-
-set clipboard="unnamedplus"
-
-set mouse="a"
+set backspace=indent,eol,start
 
 set nohlsearch
 set incsearch
 set showmatch
 
-set background="dark"
-colorscheme desert
-autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
+set clipboard=unnamedplus
+
+set omnifunc=ccomplete#Complete
+set tags=~/.vim/tags,tags
 
 syntax on
 filetype plugin on
 filetype plugin indent on
 
-set packpath^=~/.vim/pack/vendor/start/
-set omnifunc=ccomplete#Complete
-set tags=~/.vim/tags,tags
+set background="dark"
+colorscheme desert
+autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
 source ~/.vim/lsp.vim

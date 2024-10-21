@@ -1,7 +1,6 @@
-let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
+let g:lsp_diagnostics_enabled = 1
 
 if executable('pylsp')
-    " pip install python-lsp-server
     au User lsp_setup call lsp#register_server({
         \ 'name': 'pylsp',
         \ 'cmd': {server_info->['pylsp']},
@@ -10,7 +9,6 @@ if executable('pylsp')
 endif
 
 if executable('clangd')
-    " pip install python-lsp-server
     au User lsp_setup call lsp#register_server({
         \ 'name': 'clangd',
         \ 'cmd': {server_info->['clangd']},
@@ -37,8 +35,6 @@ function! s:on_lsp_buffer_enabled() abort
 
     let g:lsp_format_sync_timeout = 1000
     autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
-    
-    " refer to doc to add more commands
 endfunction
 
 augroup lsp_install
