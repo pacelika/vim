@@ -14,7 +14,7 @@ set wrap
 
 set ignorecase
 
-const tab_alignment = 2
+const tab_alignment = 4
 
 execute 'set tabstop=' . tab_alignment " expandtab"
 execute "set shiftwidth=" . tab_alignment
@@ -40,12 +40,12 @@ set clipboard=unnamedplus
 set omnifunc=ccomplete#Complete
 set tags=~/.vim/tags,tags
 
-syntax on
-filetype plugin on
-filetype plugin indent on
-
 set background="dark"
 colorscheme desert
 autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
+
+syntax on
+filetype plugin on
+filetype plugin indent on
 
 source ~/.vim/lsp.vim

@@ -16,6 +16,14 @@ if executable('clangd')
         \ })
 endif
 
+if executable('gopls')
+     au User lsp_setup call lsp#register_server({
+         \ 'name': 'gopls',
+         \ 'cmd': {server_info->['gopls']},
+         \ 'allowlist': ['go'],
+         \ })
+endif
+
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
