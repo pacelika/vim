@@ -1,4 +1,4 @@
-let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_enabled = 0
 
 if executable('pylsp')
     au User lsp_setup call lsp#register_server({
@@ -23,6 +23,30 @@ if executable('gopls')
          \ 'allowlist': ['go'],
          \ })
 endif
+
+if executable('rust-analyzer')
+    au User lsp_setup call lsp#register_server({
+     \ 'name': 'rust-analyzer',
+     \ 'cmd': {server_info->['rust-analyzer']},
+     \ 'allowlist': ['rust'],
+     \ })
+
+
+    if exists(':LspStart')
+      augroup lsp_rust
+        autocmd!
+        autocmd FileType rust LspStart rust-analyzer
+      augroup END
+    endif
+
+    let g:lsp_settings = {
+      \ 'rust-analyzer': {
+      \   'cmd': ['rust-analyzer'],
+      \   'filetypes': ['rust'],
+      \ },
+    \ }
+endif
+
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete

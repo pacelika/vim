@@ -5,27 +5,27 @@ set t_vb=
 set number
 set nu
 set relativenumber
-
-set termguicolors
-set noswapfile
-set nobackup
-set undofile
-set wrap
-
-set ignorecase
-
-const tab_alignment = 4
-
-execute 'set tabstop=' . tab_alignment " expandtab"
-execute "set shiftwidth=" . tab_alignment
-execute "set softtabstop=" .tab_alignment
-
 set numberwidth=6
 set cursorline
 
-set smarttab
-set smartindent
+set termguicolors
+
+set noswapfile
+set nobackup
+set undofile
+
+set wrap
+set ignorecase
 set smartcase
+
+const TAB_ALIGNMENT = 4
+
+execute 'set tabstop='.TAB_ALIGNMENT " expandtab"
+execute "set shiftwidth=".TAB_ALIGNMENT
+execute "set softtabstop=".TAB_ALIGNMENT
+set smarttab
+
+set smartindent
 
 set autoindent 
 set cindent 
