@@ -1,60 +1,8 @@
-let g:lsp_diagnostics_enabled = 0
+let g:lsp_diagnostics_enabled = 1
 
-if executable('pylsp')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pylsp',
-        \ 'cmd': {server_info->['pylsp']},
-        \ 'allowlist': ['python'],
-        \ })
-endif
-
-if executable('typescript-language-server')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'tsserver',
-        \ 'cmd': ['typescript-language-server', '--stdio'],
-        \ 'whitelist': ['javascript', 'typescript', 'typescript.tsx'],
-        \ })
-endif
-
-if executable('clangd')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'clangd',
-        \ 'cmd': {server_info->['clangd']},
-        \ 'allowlist': ['c'],
-        \ })
-endif
-
-if executable('gopls')
-     au User lsp_setup call lsp#register_server({
-         \ 'name': 'gopls',
-         \ 'cmd': {server_info->['gopls']},
-         \ 'allowlist': ['go'],
-         \ })
-endif
-
-if executable('rust-analyzer')
-    au User lsp_setup call lsp#register_server({
-     \ 'name': 'rust-analyzer',
-     \ 'cmd': {server_info->['rust-analyzer']},
-     \ 'allowlist': ['rust'],
-     \ })
-
-
-    if exists(':LspStart')
-      augroup lsp_rust
-        autocmd!
-        autocmd FileType rust LspStart rust-analyzer
-      augroup END
-    endif
-
-    let g:lsp_settings = {
-      \ 'rust-analyzer': {
-      \   'cmd': ['rust-analyzer'],
-      \   'filetypes': ['rust'],
-      \ },
-    \ }
-endif
-
+for file in glob('~/.vim/lsp/*.vim', 1, 1)
+    execute 'source' file
+endfor
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
@@ -79,6 +27,5 @@ endfunction
 
 augroup lsp_install
     au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
