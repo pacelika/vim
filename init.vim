@@ -1,4 +1,8 @@
+set noswapfile
+set nobackup
+set noundofile
 set noerrorbells
+
 set visualbell
 set t_vb=
 
@@ -7,12 +11,6 @@ set nu
 set relativenumber
 set numberwidth=6
 set cursorline
-
-set termguicolors
-
-set noswapfile
-set nobackup
-set undofile
 
 set wrap
 set ignorecase
@@ -26,7 +24,6 @@ execute "set softtabstop=".TAB_ALIGNMENT
 set smarttab
 
 set smartindent
-
 set autoindent 
 set cindent 
 set backspace=indent,eol,start
@@ -41,6 +38,7 @@ set omnifunc=ccomplete#Complete
 set tags=~/.vim/tags,tags
 
 set background="dark"
+set termguicolors
 colorscheme desert
 autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
