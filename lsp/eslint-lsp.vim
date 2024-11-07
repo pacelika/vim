@@ -1,28 +1,30 @@
+let s:extensions = ["js","mjs","cjs","ts","mts","cts","json","yaml","yml"]
+let s:filename = ".eslintrc"
+let s:dirsToLook = [getcwd().'/',expand("~").'/']
+
 function! FindEslintConfig(dir)
-    if filereadable(a:dir . '.eslintrc')
-        return a:dir . '.eslintrc'
-    elseif filereadable(a:dir . '.eslintrc.json')
-        return a:dir . '.eslintrc.json'
-    elseif filereadable(a:dir . '.eslintrc.js')
-        return a:dir . '.eslintrc.js'
-    elseif filereadable(a:dir . '.eslintrc.cjs')
-        return a:dir . '.eslintrc.cjs'
-    elseif filereadable(a:dir . '.eslintrc.yaml')
-        return a:dir . '.eslintrc.yaml'
-    elseif filereadable(a:dir . '.eslintrc.yml')
-        return a:dir . '.eslintrc.yml'
-    else
-        return ''
+    if filereadable(a:dir . s:filename)
+        return a:dir . s:filename
     endif
+
+    for ext in s:extensions
+        if filereadable(a:dir . s:filename . "." . ext)
+            return a:dir . s:filename . "." . ext
+        endif
+    endfor
 endfunction
 
-let s:configLocation = FindEslintConfig(getcwd() . '/')
+let s:configLocation = v:null
 
-if s:configLocation is ''
-    let s:configLocation = FindEslintConfig(expand("~") . '/')
-endif
+for loc in s:dirsToLook
+    let s:configLocation = FindEslintConfig(loc)
 
-if executable('diagnostic-languageserver') && s:configLocation isnot ''
+    if s:configLocation isnot v:null
+        break 
+    endif
+endfor
+
+if executable('diagnostic-languageserver') && s:configLocation isnot v:null
     au User lsp_setup call lsp#register_server({
         \ 'name': 'diagnosticls',
         \ 'cmd': ['diagnostic-languageserver', '--stdio'],
