@@ -3,15 +3,17 @@ let s:filename = ".eslintrc"
 let s:dirsToLook = [getcwd().'/',expand("~").'/']
 
 function! FindEslintConfig(dir)
-    if filereadable(a:dir . s:filename)
-        return a:dir . s:filename
-    endif
-
     for ext in s:extensions
         if filereadable(a:dir . s:filename . "." . ext)
             return a:dir . s:filename . "." . ext
         endif
     endfor
+
+    if filereadable(a:dir . s:filename)
+        return a:dir . s:filename
+    endif
+
+    return v:null
 endfunction
 
 let s:configLocation = v:null
@@ -19,7 +21,7 @@ let s:configLocation = v:null
 for loc in s:dirsToLook
     let s:configLocation = FindEslintConfig(loc)
 
-    if s:configLocation isnot v:null
+    if s:configLocation isnot 0 && s:configLocation isnot v:null
         break 
     endif
 endfor
