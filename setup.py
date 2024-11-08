@@ -1,23 +1,43 @@
 import os
 import re
+import sys
 
 plugins = {
-    "coc.nvim": "neoclide/coc.nvim" ,
+    "vimwiki": "vimwiki/vimwiki",
     "auto-pairs": "jiangmiao/auto-pairs",
     "vim-commentary": "tpope/vim-commentary",
-    "vim-lsp": "prabirshrestha/vim-lsp",
-    "vimwiki": "vimwiki/vimwiki",
+    "ctrlp.vim": "kien/ctrlp.vim",
     "vim-svelte": "evanleck/vim-svelte",
-    "ctrlp.vim": "kien/ctrlp.vim"
+    "vim-lsp": "prabirshrestha/vim-lsp",
+    "coc.nvim": "neoclide/coc.nvim" ,
 }
 
-AUTOSTART_FOLDER_PATH = f"{os.getenv("HOME")}/.vim/pack/vendor/start"
+# TODO: Optional plugins
+webdev_plugins = ["vim-svelte"]
+minimal_plugins = ["auto-pairs","vim-lsp","vim-commentary"]
+
+AUTOSTART_FOLDER_PATH = f"{os.getenv("HOME")}/.vim/pack/plugins/start"
 
 def find_au_plug(dir_name):
     return os.path.exists(f"{AUTOSTART_FOLDER_PATH}/{dir_name}")
 
+def get_git_url(url):
+    if url.startswith("https:github.com"):
+        url = f"{url}"     
+    elif not (url in "github.com"):
+        url = f"https://github.com/{url}"
+    else:
+        return None
+
+    return url
+
 def fetch_git_plug(repo,dest=AUTOSTART_FOLDER_PATH):  
-    url = f"https://github.com/{repo}"
+    url = get_git_url(repo)
+
+    if url == None:
+        print(f"Could not parse url. What: {url}")
+        exit(1)
+
     result = re.search(r'/([^/]+)$', url)
 
     if result:
@@ -25,16 +45,33 @@ def fetch_git_plug(repo,dest=AUTOSTART_FOLDER_PATH):
         dest = f"{dest}/{repo_name}"
         os.system(f"git clone {url} {dest}")
     else:
-        print("Could not find repo name.")
+        print(f"Could not parse repo name. What: {repo}")
+        exit(1)
 
-if __name__ == "__main__":
+def main():
     if not os.path.exists(AUTOSTART_FOLDER_PATH):
         try:
             os.makedirs(AUTOSTART_FOLDER_PATH)
+            print(f"-- Creating folders for autostart plugins: {AUTOSTART_FOLDER_PATH}")
         except Exception as err:
             print(err)
-            exit(1)
+            return 1
 
     for name in plugins:
         if not find_au_plug(name):
+            print(f"-- Cloning {name} from {get_git_url(plugins[name])}");
             fetch_git_plug(plugins[name])
+    
+    if not os.path.exists(f"{AUTOSTART_FOLDER_PATH}/coc.nvim/build"):
+        print("-- Building coc.nvim...")
+        os.system(f"cd {AUTOSTART_FOLDER_PATH}/coc.nvim && npm ci")
+        if not ("-noclear" in sys.argv):
+            pass
+        print("-- Built coc.nvim with npm ci")
+        return 0
+
+    print("-- Nothing to run. All good!")
+    return 0
+
+if __name__ == "__main__":
+    exit(main())
