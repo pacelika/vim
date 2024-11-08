@@ -26,14 +26,28 @@ for filePath in glob('~/.vim/lsp/*.vim', 1, 1)
 endfor
 
 let lspDict["svelte-lsp"]["exec"] = "svelteserver"
+let lspDict["svelte-lsp"]["prefer-model"] = "coc"
 let lspDict["svelte-lsp"]["coc-ext"] = "coc-svelte"
 
 let lspDict["typescript-lsp"]["exec"] = "typescript-language-server"
-let lspDict["typescript-lsp"]["coc-ext"] = ""
+let lspDict["typescript-lsp"]["prefer-model"] = "coc"
+let lspDict["typescript-lsp"]["coc-ext"] = "coc-tsserver"
 
 let lspDict["clangd-lsp"]["exec"] = "clangd"
 let lspDict["clangd-lsp"]["prefer-model"] = "coc"
 let lspDict["clangd-lsp"]["coc-ext"] = "coc-clangd"
+
+let lspDict["go-lsp"]["exec"] = "gopls"
+let lspDict["go-lsp"]["prefer-model"] = "coc"
+let lspDict["go-lsp"]["coc-ext"] = "coc-go"
+
+let lspDict["rust-lsp"]["exec"] = "rust-analyzer"
+let lspDict["rust-lsp"]["prefer-model"] = "coc"
+let lspDict["rust-lsp"]["coc-ext"] = "coc-rust"
+
+let lspDict["python-lsp"]["exec"] = "pylsp"
+let lspDict["python-lsp"]["prefer-model"] = "coc"
+let lspDict["python-lsp"]["coc-ext"] = "coc-python"
 
 for key in keys(lspDict)
     let lspData = lspDict[key]
