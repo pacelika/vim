@@ -1,3 +1,8 @@
+let g:lsp_log_file = '/tmp/lsp.log'
+let g:lsp_log_level = 'debug'
+
+set runtimepath+=~/.vim/pack/vendor/start/coc.nvim
+
 set noswapfile
 set nobackup
 set noundofile

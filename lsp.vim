@@ -1,8 +1,51 @@
 let g:lsp_diagnostics_enabled = 1
+let g:lsp_enabled = 1
 
-for file in glob('~/.vim/lsp/*.vim', 1, 1)
-    execute 'source' file
+let s:COC_EXTPATH = expand("~") . "/.config/coc/extensions/node_modules"
+
+function! IsCocExtPresent(extension)
+    return isdirectory(s:COC_EXTPATH . "/" . a:extension)
+endfunction
+
+let lspDict = {}
+let cocExtsToInstall = []
+
+autocmd User CocNvimInit call StartupLsp()
+autocmd VimEnter * if exists('*CocStop') | call CocStop() | endif
+
+function! StartupLsp()
+    for cocExt in cocExtsToInstall 
+        call CocInstall cocExt
+    endfor
+endfunction
+
+for filePath in glob('~/.vim/lsp/*.vim', 1, 1)
+    let fileName = fnamemodify(filePath,":t")
+    let fileNameNoExt = fnamemodify(fileName,":r")
+    let lspDict[fileNameNoExt] = { 'filePath' : filePath,'prefer-model': "default",'exec': v:null,'coc-ext': v:null}
 endfor
+
+let lspDict["svelte-lsp"]["exec"] = "svelteserver"
+let lspDict["svelte-lsp"]["coc-ext"] = "coc-svelte"
+
+let lspDict["typescript-lsp"]["exec"] = "typescript-language-server"
+let lspDict["typescript-lsp"]["coc-ext"] = ""
+
+let lspDict["clangd-lsp"]["exec"] = "clangd"
+let lspDict["clangd-lsp"]["prefer-model"] = "coc"
+let lspDict["clangd-lsp"]["coc-ext"] = "coc-clangd"
+
+for key in keys(lspDict)
+    let lspData = lspDict[key]
+
+    if lspData['prefer-model'] is "coc" 
+        if !IsCocExtPresent(lspData['coc-ext']) && executable(lspData["exec"])
+            call add(cocExtsToInstall,lspData['coc-ext'])                 
+        endif
+    else
+        execute 'source' lspData['filePath']
+    endif
+endfor 
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
