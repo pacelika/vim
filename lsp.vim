@@ -22,6 +22,9 @@ endfunction
 for filePath in glob('~/.vim/lsp/*.vim', 1, 1)
     let fileName = fnamemodify(filePath,":t")
     let fileNameNoExt = fnamemodify(fileName,":r")
+    if fileNameNoExt is "eslint-lsp" 
+        continue
+    endif
     let lspDict[fileNameNoExt] = { 'filePath' : filePath,'prefer-model': "default",'exec': v:null,'coc-ext': v:null}
 endfor
 

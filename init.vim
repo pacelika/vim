@@ -1,5 +1,6 @@
 let g:lsp_log_file = '/tmp/lsp.log'
 let g:lsp_log_level = 'debug'
+let g:formatOnSave = 1
 
 set runtimepath+=~/.vim/pack/vendor/start/coc.nvim
 
@@ -52,3 +53,4 @@ filetype plugin on
 filetype plugin indent on
 
 source ~/.vim/lsp.vim
+source ~/.vim/prettier.vim

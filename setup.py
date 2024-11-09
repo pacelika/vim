@@ -9,7 +9,8 @@ plugins = {
     "ctrlp.vim": "kien/ctrlp.vim",
     "vim-svelte": "evanleck/vim-svelte",
     "vim-lsp": "prabirshrestha/vim-lsp",
-    "coc.nvim": "neoclide/coc.nvim" ,
+    "coc.nvim": "neoclide/coc.nvim",
+    "vim-prettier": "prettier/vim-prettier"
 }
 
 # TODO: Optional plugins
@@ -49,10 +50,13 @@ def fetch_git_plug(repo,dest=AUTOSTART_FOLDER_PATH):
         exit(1)
 
 def main():
+    did_action = False
+
     if not os.path.exists(AUTOSTART_FOLDER_PATH):
         try:
             os.makedirs(AUTOSTART_FOLDER_PATH)
             print(f"-- Creating folders for autostart plugins: {AUTOSTART_FOLDER_PATH}")
+            did_action = True
         except Exception as err:
             print(err)
             return 1
@@ -60,6 +64,7 @@ def main():
     for name in plugins:
         if not find_au_plug(name):
             print(f"-- Cloning {name} from {get_git_url(plugins[name])}");
+            did_action = True
             fetch_git_plug(plugins[name])
     
     if not os.path.exists(f"{AUTOSTART_FOLDER_PATH}/coc.nvim/build"):
@@ -70,7 +75,8 @@ def main():
         print("-- Built coc.nvim with npm ci")
         return 0
 
-    print("-- Nothing to run. All good!")
+    if not did_action:
+        print("-- Nothing to run. All good!")
     return 0
 
 if __name__ == "__main__":
