@@ -10,12 +10,10 @@ plugins = {
     "vim-svelte": "evanleck/vim-svelte",
     "vim-lsp": "prabirshrestha/vim-lsp",
     "coc.nvim": "neoclide/coc.nvim",
-    "vim-prettier": "prettier/vim-prettier"
+    "vim-prettier": "prettier/vim-prettier",
+    "fzf": "junegunn/fzf",
+    "fzf.vim": "junegunn/fzf.vim"
 }
-
-# TODO: Optional plugins
-webdev_plugins = ["vim-svelte"]
-minimal_plugins = ["auto-pairs","vim-lsp","vim-commentary"]
 
 AUTOSTART_FOLDER_PATH = f"{os.getenv("HOME")}/.vim/pack/plugins/start"
 
