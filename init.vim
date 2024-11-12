@@ -1,3 +1,5 @@
+let uName = trim(system("uname"))
+
 let g:lsp_log_file = '/tmp/lsp.log'
 let g:lsp_log_level = 'debug'
 let g:formatOnSave = 0
@@ -54,3 +56,9 @@ source ~/.vim/lsp.vim
 source ~/.vim/prettier.vim
 
 nnoremap <c-p> :Files<CR>
+
+if uName == "Darwin"
+    vnoremap <C-c> :w !pbcopy<CR><CR>
+elseif uName == "Linux"
+    vnoremap <C-c> :w !xclip -selection clipboard<CR><CR>
+endif
