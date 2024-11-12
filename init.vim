@@ -45,7 +45,7 @@ set tags=~/.vim/tags,tags
 
 set background="dark"
 set termguicolors
-colorscheme slate
+colorscheme desert
 autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
 syntax on
