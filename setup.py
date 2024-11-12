@@ -6,13 +6,13 @@ plugins = {
     "vimwiki": "vimwiki/vimwiki",
     "auto-pairs": "jiangmiao/auto-pairs",
     "vim-commentary": "tpope/vim-commentary",
-    "ctrlp.vim": "kien/ctrlp.vim",
     "vim-svelte": "evanleck/vim-svelte",
     "vim-lsp": "prabirshrestha/vim-lsp",
     "coc.nvim": "neoclide/coc.nvim",
     "vim-prettier": "prettier/vim-prettier",
     "fzf": "junegunn/fzf",
-    "fzf.vim": "junegunn/fzf.vim"
+    "fzf.vim": "junegunn/fzf.vim",
+    "vim-tmux-navigator" : "christoomey/vim-tmux-navigator"
 }
 
 AUTOSTART_FOLDER_PATH = f"{os.getenv("HOME")}/.vim/pack/plugins/start"
