@@ -6,13 +6,14 @@ plugins = {
     "vimwiki": "vimwiki/vimwiki",
     "auto-pairs": "jiangmiao/auto-pairs",
     "vim-commentary": "tpope/vim-commentary",
-    "vim-svelte": "evanleck/vim-svelte",
+
     "vim-lsp": "prabirshrestha/vim-lsp",
-    "coc.nvim": "neoclide/coc.nvim",
+    "YouCompleteMe": "ycm-core/YouCompleteMe",
     "vim-prettier": "prettier/vim-prettier",
+
     "fzf": "junegunn/fzf",
     "fzf.vim": "junegunn/fzf.vim",
-    "vim-tmux-navigator" : "christoomey/vim-tmux-navigator"
+    "vim-tmux-navigator": "christoomey/vim-tmux-navigator",
 }
 
 AUTOSTART_FOLDER_PATH = f"{os.getenv("HOME")}/.vim/pack/plugins/start"
@@ -64,14 +65,21 @@ def main():
             print(f"-- Cloning {name} from {get_git_url(plugins[name])}");
             did_action = True
             fetch_git_plug(plugins[name])
-    
-    if not os.path.exists(f"{AUTOSTART_FOLDER_PATH}/coc.nvim/build"):
-        print("-- Building coc.nvim...")
-        os.system(f"cd {AUTOSTART_FOLDER_PATH}/coc.nvim && npm ci")
-        if not ("-noclear" in sys.argv):
-            pass
-        print("-- Built coc.nvim with npm ci")
-        return 0
+    if os.path.exists(f"{AUTOSTART_FOLDER_PATH}/YouCompleteMe") and not os.path.exists(f"{AUTOSTART_FOLDER_PATH}/YouCompleteMe/third_party/ycmd/build.py"):
+        prompt_result = input("YouCompleteMe is not built, should I do build it: (y) yes, (n) no\n")
+
+        if prompt_result != None and prompt_result.isnumeric():
+            print(f"Invalid input: '{prompt_result}'")
+            exit(main())
+
+        if prompt_result == "y" or prompt_result == "yes" or prompt_result == "":
+            print("-- Building YouCompleteMe...")
+            os.system(f"cd {AUTOSTART_FOLDER_PATH}/YouCompleteMe; git submodule update --init --recursive")
+            os.system(f"cd {AUTOSTART_FOLDER_PATH}/YouCompleteMe; python3 install.py --all")
+            if not ("-noclear" in sys.argv):
+                pass
+            print("-- Installed YouCompleteMe")
+            return 0
 
     if not did_action:
         print("-- Nothing to run. All good!")

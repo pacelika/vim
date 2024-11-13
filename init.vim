@@ -1,4 +1,4 @@
-let uName = trim(system("uname"))
+const uName = trim(system("uname"))
 
 let g:lsp_log_file = '/tmp/lsp.log'
 let g:lsp_log_level = 'debug'
