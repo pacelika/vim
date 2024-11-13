@@ -55,7 +55,9 @@ filetype plugin indent on
 source ~/.vim/lsp.vim
 source ~/.vim/prettier.vim
 
-nnoremap <c-p> :Files<CR>
+if isdirectory(expand("~") . "/.vim/pack/plugins/start/fzf.vim")
+    nnoremap <c-p> :Files<CR>
+endif
 
 if uName == "Darwin"
     vnoremap <C-c> :w !pbcopy<CR><CR>

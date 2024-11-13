@@ -4,14 +4,13 @@ let g:ycm_auto_trigger = 1
 
 set completeopt=menu,menuone,noselect
 
-if isdirectory("~/.vim/pack") && isdirectory("~/.vim/pack/plugins/start/vim-lsp")
+if isdirectory(expand("~") . "/.vim/pack/plugins/start/vim-lsp")
     for filePath in glob('~/.vim/lsp/*.vim', 1, 1)
         let fileName = fnamemodify(filePath,":t")
         let fileNameNoExt = fnamemodify(fileName,":r")
         if fileNameNoExt is "eslint-lsp" 
             continue
         endif
-
         execute 'source' filePath
     endfor
 endif
