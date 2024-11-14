@@ -76,6 +76,7 @@ def main():
             print("-- Building YouCompleteMe...")
             os.system(f"cd {AUTOSTART_FOLDER_PATH}/YouCompleteMe; git submodule update --init --recursive")
             os.system(f"cd {AUTOSTART_FOLDER_PATH}/YouCompleteMe; python3 install.py --all")
+            os.system(f"cd {AUTOSTART_FOLDER_PATH}/YouCompleteMe; python3 install.py --clangd-completer")
             if not ("-noclear" in sys.argv):
                 pass
             print("-- Installed YouCompleteMe")

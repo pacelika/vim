@@ -6,7 +6,6 @@ let g:formatOnSave = 0
 
 set noswapfile
 set nobackup
-set noundofile
 set noerrorbells
 
 set visualbell
