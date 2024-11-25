@@ -14,6 +14,8 @@ plugins = {
     "fzf": "junegunn/fzf",
     "fzf.vim": "junegunn/fzf.vim",
     "vim-tmux-navigator": "christoomey/vim-tmux-navigator",
+
+    "vim-scarpet" : "twh2898/vim-scarpet"
 }
 
 AUTOSTART_FOLDER_PATH = f"{os.getenv("HOME")}/.vim/pack/plugins/start"
