@@ -2,6 +2,8 @@ let g:lsp_enabled = 1
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_format_sync_timeout = 1000
 let g:ycm_auto_trigger = 1
+let g:lsp_log_file = '/tmp/lsp.log'
+let g:lsp_log_level = 'debug'
 
 set completeopt=menu,menuone,noselect
 

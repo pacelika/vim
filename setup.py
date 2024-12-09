@@ -6,16 +6,17 @@ plugins = {
     "vimwiki": "vimwiki/vimwiki",
     "auto-pairs": "jiangmiao/auto-pairs",
     "vim-commentary": "tpope/vim-commentary",
+    "vim-tmux-navigator": "christoomey/vim-tmux-navigator",
 
     "vim-lsp": "prabirshrestha/vim-lsp",
     "YouCompleteMe": "ycm-core/YouCompleteMe",
+
     "vim-prettier": "prettier/vim-prettier",
 
     "fzf": "junegunn/fzf",
     "fzf.vim": "junegunn/fzf.vim",
-    "vim-tmux-navigator": "christoomey/vim-tmux-navigator",
 
-    "vim-scarpet" : "twh2898/vim-scarpet"
+    "nim.nvim" : "zah/nim.vim"
 }
 
 AUTOSTART_FOLDER_PATH = f"{os.getenv("HOME")}/.vim/pack/plugins/start"
@@ -25,7 +26,7 @@ def find_au_plug(dir_name):
 
 def get_git_url(url):
     if url.startswith("https:github.com"):
-        url = f"{url}"     
+        url = f"{url}"
     elif not (url in "github.com"):
         url = f"https://github.com/{url}"
     else:
@@ -33,7 +34,7 @@ def get_git_url(url):
 
     return url
 
-def fetch_git_plug(repo,dest=AUTOSTART_FOLDER_PATH):  
+def fetch_git_plug(repo,dest=AUTOSTART_FOLDER_PATH):
     url = get_git_url(repo)
 
     if url == None:

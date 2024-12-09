@@ -1,7 +1,5 @@
 const uName = trim(system("uname"))
 
-let g:lsp_log_file = '/tmp/lsp.log'
-let g:lsp_log_level = 'debug'
 let g:formatOnSave = 0
 
 set noswapfile
@@ -29,8 +27,8 @@ execute "set softtabstop=".TAB_ALIGNMENT
 set smarttab
 
 set smartindent
-set autoindent 
-set cindent 
+set autoindent
+set cindent
 set backspace=indent,eol,start
 
 set nohlsearch
@@ -53,6 +51,7 @@ filetype plugin indent on
 
 source ~/.vim/lsp.vim
 source ~/.vim/prettier.vim
+source ~/.vim/nim.vim
 
 if isdirectory(expand("~") . "/.vim/pack/plugins/start/fzf.vim")
     nnoremap <c-p> :Files<CR>
