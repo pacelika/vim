@@ -51,7 +51,6 @@ filetype plugin indent on
 
 source ~/.vim/lsp.vim
 source ~/.vim/prettier.vim
-source ~/.vim/nim.vim
 
 if isdirectory(expand("~") . "/.vim/pack/plugins/start/fzf.vim")
     nnoremap <c-p> :Files<CR>
