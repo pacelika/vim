@@ -1,6 +1,6 @@
 const uName = trim(system("uname"))
-
 let g:formatOnSave = 0
+let g:sneak#label = 1
 
 set noswapfile
 set nobackup
@@ -51,6 +51,7 @@ filetype plugin indent on
 
 source ~/.vim/lsp.vim
 source ~/.vim/prettier.vim
+source ~/.vim/git.vim
 
 if isdirectory(expand("~") . "/.vim/pack/plugins/start/fzf.vim")
     nnoremap <c-p> :Files<CR>

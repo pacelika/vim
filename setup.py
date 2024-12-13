@@ -7,16 +7,18 @@ plugins = {
     "auto-pairs": "jiangmiao/auto-pairs",
     "vim-commentary": "tpope/vim-commentary",
     "vim-tmux-navigator": "christoomey/vim-tmux-navigator",
+    "vim-gitgutter" :"airblade/vim-gitgutter",
+    "vim-lastplace": "farmergreg/vim-lastplace",
+    "vim-sneak": "justinmk/vim-sneak",
 
     "vim-lsp": "prabirshrestha/vim-lsp",
     "YouCompleteMe": "ycm-core/YouCompleteMe",
 
     "vim-prettier": "prettier/vim-prettier",
-
     "fzf": "junegunn/fzf",
     "fzf.vim": "junegunn/fzf.vim",
 
-    "nim.nvim" : "zah/nim.vim"
+    "nim.vim" : "zah/nim.vim",
 }
 
 AUTOSTART_FOLDER_PATH = f"{os.getenv("HOME")}/.vim/pack/plugins/start"
