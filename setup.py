@@ -7,18 +7,26 @@ plugins = {
     "auto-pairs": "jiangmiao/auto-pairs",
     "vim-commentary": "tpope/vim-commentary",
     "vim-tmux-navigator": "christoomey/vim-tmux-navigator",
-    "vim-gitgutter" :"airblade/vim-gitgutter",
+
+    "vim-gitgutter":"airblade/vim-gitgutter",
+    "vim-fugitive" : "tpope/vim-fugitive",
+
     "vim-lastplace": "farmergreg/vim-lastplace",
-    "vim-sneak": "justinmk/vim-sneak",
+    "undotree": "mbbill/undotree",
+    "vim-signature": "kshenoy/vim-signature",
+    "vim-surround": "tpope/vim-surround",
+    "nerdtree": "preservim/nerdtree",
+
+    "vim-prettier": "prettier/vim-prettier",
+    "ale": "dense-analysis/ale",
+
+    "gruvbox": "morhetz/gruvbox",
 
     "vim-lsp": "prabirshrestha/vim-lsp",
     "YouCompleteMe": "ycm-core/YouCompleteMe",
 
-    "vim-prettier": "prettier/vim-prettier",
     "fzf": "junegunn/fzf",
     "fzf.vim": "junegunn/fzf.vim",
-
-    "nim.vim" : "zah/nim.vim",
 }
 
 AUTOSTART_FOLDER_PATH = f"{os.getenv("HOME")}/.vim/pack/plugins/start"
@@ -55,6 +63,17 @@ def fetch_git_plug(repo,dest=AUTOSTART_FOLDER_PATH):
 
 def main():
     did_action = False
+
+    if "--clean" in sys.argv:
+        directory = os.fsencode(AUTOSTART_FOLDER_PATH)
+
+        for file in os.listdir(directory):
+            filename = os.fsdecode(file)
+
+            if filename not in plugins:
+                did_action = True
+                os.system(f"rm -rf {AUTOSTART_FOLDER_PATH}/{filename}")
+                print(f"-- Removed plugin: {filename}")
 
     if not os.path.exists(AUTOSTART_FOLDER_PATH):
         try:
