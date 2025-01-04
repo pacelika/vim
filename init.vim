@@ -51,7 +51,6 @@ filetype plugin on
 filetype plugin indent on
 
 source ~/.vim/lsp.vim
-source ~/.vim/prettier.vim
 source ~/.vim/git.vim
 source ~/.vim/ale.vim
 
@@ -59,11 +58,6 @@ if isdirectory(expand("~") . "/.vim/pack/plugins/start/fzf.vim")
     nnoremap <space>ff :Files<CR>
     nnoremap <C-p> :Files<CR>
 endif
-
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <space>fm :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
 
 nmap <leader>m :Marks<CR>
 nnoremap <space>u :UndotreeToggle<CR>
@@ -73,3 +67,6 @@ if uName == "Darwin"
 elseif uName == "Linux"
     vnoremap <C-c> :w !xclip -selection clipboard<CR><CR>
 endif
+
+autocmd BufLeave,BufWinLeave * silent! mkview
+autocmd BufReadPost * silent! loadview

@@ -3,7 +3,6 @@ import re
 import sys
 
 plugins = {
-    "vimwiki": "vimwiki/vimwiki",
     "auto-pairs": "jiangmiao/auto-pairs",
     "vim-commentary": "tpope/vim-commentary",
     "vim-tmux-navigator": "christoomey/vim-tmux-navigator",
@@ -11,19 +10,14 @@ plugins = {
     "vim-gitgutter":"airblade/vim-gitgutter",
     "vim-fugitive" : "tpope/vim-fugitive",
 
-    "vim-lastplace": "farmergreg/vim-lastplace",
-    "undotree": "mbbill/undotree",
     "vim-signature": "kshenoy/vim-signature",
     "vim-surround": "tpope/vim-surround",
-    "nerdtree": "preservim/nerdtree",
 
-    "vim-prettier": "prettier/vim-prettier",
-    "ale": "dense-analysis/ale",
-
-    "gruvbox": "morhetz/gruvbox",
+    "undotree": "mbbill/undotree",
 
     "vim-lsp": "prabirshrestha/vim-lsp",
     "YouCompleteMe": "ycm-core/YouCompleteMe",
+    "ale": "dense-analysis/ale",
 
     "fzf": "junegunn/fzf",
     "fzf.vim": "junegunn/fzf.vim",
