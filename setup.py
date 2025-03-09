@@ -23,7 +23,13 @@ plugins = {
     "fzf.vim": "junegunn/fzf.vim",
 }
 
-AUTOSTART_FOLDER_PATH = f"{os.getenv("HOME")}/.vim/pack/plugins/start"
+HOME_DIR = os.getenv("HOME")
+
+if HOME_DIR == None:
+    HOME_DIR = "%USERPROFILE%"
+
+AUTOSTART_FOLDER_PATH = f"{HOME_DIR}/.vim/pack/plugins/start"
+#AUTOSTART_FOLDER_PATH = "pack/plugins/start"
 
 def find_au_plug(dir_name):
     return os.path.exists(f"{AUTOSTART_FOLDER_PATH}/{dir_name}")

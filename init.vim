@@ -1,4 +1,3 @@
-const uName = trim(system("uname"))
 let g:formatOnSave = 0
 
 set allowrevins
@@ -8,7 +7,7 @@ set nobackup
 
 set noerrorbells
 set novisualbell
-set t_vb=
+set novb t_vb=
 
 set number
 set nu
@@ -50,23 +49,27 @@ syntax on
 filetype plugin on
 filetype plugin indent on
 
+source ~/.vim/plugins.vim
+
 source ~/.vim/lsp.vim
 source ~/.vim/git.vim
 source ~/.vim/ale.vim
 
-if isdirectory(expand("~") . "/.vim/pack/plugins/start/fzf.vim")
-    nnoremap <space>ff :Files<CR>
-    nnoremap <C-p> :Files<CR>
-endif
+nnoremap <space>ff :Files<CR>
+nnoremap <C-p> :Files<CR>
 
 nmap <leader>m :Marks<CR>
-nnoremap <space>u :UndotreeToggle<CR>
-
-if uName == "Darwin"
-    vnoremap <C-c> :w !pbcopy<CR><CR>
-elseif uName == "Linux"
-    vnoremap <C-c> :w !xclip -selection clipboard<CR><CR>
-endif
 
 autocmd BufLeave,BufWinLeave * silent! mkview
 autocmd BufReadPost * silent! loadview
+
+if has('win64') || has('win32')
+    "TODO: add windows copy to clipboard support
+else
+    const uName = trim(system("uname"))
+    if uName == "Darwin"
+        vnoremap <C-c> :w !pbcopy<CR><CR>
+    elseif uName == "Linux"
+        vnoremap <C-c> :w !xclip -selection clipboard<CR><CR>
+    endif
+endif
