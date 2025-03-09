@@ -51,25 +51,13 @@ filetype plugin indent on
 
 source ~/.vim/plugins.vim
 
-source ~/.vim/lsp.vim
+"source ~/.vim/lsp.vim
 source ~/.vim/git.vim
 source ~/.vim/ale.vim
-
-nnoremap <space>ff :Files<CR>
-nnoremap <C-p> :Files<CR>
+source ~/.vim/fzf_conf.vim
+source ~/.vim/clipboard.vim
 
 nmap <leader>m :Marks<CR>
 
 autocmd BufLeave,BufWinLeave * silent! mkview
 autocmd BufReadPost * silent! loadview
-
-if has('win64') || has('win32')
-    "TODO: add windows copy to clipboard support
-else
-    const uName = trim(system("uname"))
-    if uName == "Darwin"
-        vnoremap <C-c> :w !pbcopy<CR><CR>
-    elseif uName == "Linux"
-        vnoremap <C-c> :w !xclip -selection clipboard<CR><CR>
-    endif
-endif

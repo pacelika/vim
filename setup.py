@@ -1,3 +1,6 @@
+print("-- Deprecated system: setup.py")
+exit(0)
+
 import os
 import re
 import sys
