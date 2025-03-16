@@ -11,7 +11,10 @@ set number
 set nu
 set relativenumber
 set numberwidth=6
+
 set cursorline
+set guicursor=i:ver100
+" set guicursor=n:blinkon0
 
 set wrap
 set ignorecase
