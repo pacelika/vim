@@ -23,5 +23,6 @@ autocmd FileType asm let b:ale_enabled = 0
 nnoremap <space><return> :ALECodeAction<cr>
 nnoremap <space>k :ALEHover<cr>
 nnoremap gr :ALEFindReferences<cr>
+nnoremap gd :ALEGoToDefinition<cr>
 nnoremap gy :ALEGoToTypeDefinition<cr>
 nnoremap <space>a :ALECodeAction<cr>

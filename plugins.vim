@@ -13,4 +13,11 @@ Plug 'airblade/vim-gitgutter'
 Plug 'kshenoy/vim-signature'
 Plug 'tpope/vim-surround'
 
+" color schemes "
+Plug 'Rigellute/shades-of-purple.vim'
+Plug 'yassinebridi/vim-purpura'
+Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
+Plug 'metalelf0/base16-black-metal-scheme'
+
 call plug#end()

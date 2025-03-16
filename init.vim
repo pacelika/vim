@@ -38,22 +38,32 @@ set tags=~/.vim/tags,tags
 
 set background="dark"
 set termguicolors
+
+filetype plugin on
+filetype plugin indent on
+
 colorscheme desert
 autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
-syntax on
-filetype plugin on
-filetype plugin indent on
+highlight LineNr guibg=black guifg=gray
+highlight CursorLineNr guibg=black guifg=white
+highlight SignColumn guibg=black
 
 source ~/.vim/clipboard.vim
 source ~/.vim/netrw_conf.vim
 
 source ~/.vim/plugins.vim
 
+source ~/.vim/fzf_conf.vim
 source ~/.vim/lsp.vim
 " source ~/.vim/git.vim
 source ~/.vim/ale.vim
-source ~/.vim/fzf_conf.vim
 
 autocmd BufLeave,BufWinLeave * silent! mkview
 autocmd BufReadPost * silent! loadview
+
+colorscheme base16-black-metal-gorgoroth
+autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
+highlight LineNr guibg=black guifg=gray
+highlight CursorLineNr guibg=black guifg=white
+highlight SignColumn guibg=black
