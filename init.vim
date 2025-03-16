@@ -45,13 +45,15 @@ syntax on
 filetype plugin on
 filetype plugin indent on
 
+source ~/.vim/clipboard.vim
+source ~/.vim/netrw_conf.vim
+
 source ~/.vim/plugins.vim
 
 source ~/.vim/lsp.vim
-source ~/.vim/git.vim
+" source ~/.vim/git.vim
 source ~/.vim/ale.vim
 source ~/.vim/fzf_conf.vim
-source ~/.vim/clipboard.vim
 
 autocmd BufLeave,BufWinLeave * silent! mkview
 autocmd BufReadPost * silent! loadview

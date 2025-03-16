@@ -21,4 +21,7 @@ let g:ale_c_clangtidy_checks = [
 
 autocmd FileType asm let b:ale_enabled = 0
 nnoremap <space><return> :ALECodeAction<cr>
-map <A-s> :ALECodeAction<cr>
+nnoremap <space>k :ALEHover<cr>
+nnoremap gr :ALEFindReferences<cr>
+nnoremap gy :ALEGoToTypeDefinition<cr>
+nnoremap <space>a :ALECodeAction<cr>
