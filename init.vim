@@ -1,5 +1,3 @@
-let g:formatOnSave = 0
-
 set allowrevins
 
 set noswapfile
@@ -35,8 +33,6 @@ set nohlsearch
 set incsearch
 set showmatch
 
-set clipboard=unnamedplus
-
 set omnifunc=ccomplete#Complete
 set tags=~/.vim/tags,tags
 
@@ -51,13 +47,11 @@ filetype plugin indent on
 
 source ~/.vim/plugins.vim
 
-"source ~/.vim/lsp.vim
+source ~/.vim/lsp.vim
 source ~/.vim/git.vim
 source ~/.vim/ale.vim
 source ~/.vim/fzf_conf.vim
 source ~/.vim/clipboard.vim
-
-nmap <leader>m :Marks<CR>
 
 autocmd BufLeave,BufWinLeave * silent! mkview
 autocmd BufReadPost * silent! loadview
