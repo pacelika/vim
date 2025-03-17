@@ -1,7 +1,16 @@
 set allowrevins
 
+set nocompatible
+set lazyredraw
+set ttyfast
+set notimeout ttimeout ttimeoutlen=50
+set nojoinspaces
+set updatetime=100
+set signcolumn=yes
+
 set noswapfile
 set nobackup
+set nowritebackup
 
 set noerrorbells
 set novisualbell
@@ -12,7 +21,7 @@ set nu
 set relativenumber
 set numberwidth=6
 
-set cursorline
+set nocursorline
 set guicursor=i:ver100
 
 set wrap
