@@ -1,7 +1,10 @@
 let g:lsp_enabled = 1
+let g:lsp_async = 1
 let g:lsp_diagnostics_enabled = 0
 let g:lsp_format_sync_timeout = 1000
-let g:ycm_auto_trigger = 1
+let g:lsp_timeout = 1000
+let g:lsp_automatic_setup = 1
+" autocmd CursorHold * LspHover
 
 if !has('win32') || !has('win64')
     let g:lsp_log_file = '/tmp/lsp.log'
@@ -11,16 +14,16 @@ let g:lsp_log_level = 'debug'
 
 set completeopt=menu,menuone,noselect
 
-if isdirectory(expand("~") . "/.vim/pack/plugins/start/vim-lsp")
-    for filePath in glob('~/.vim/lsp/*.vim', 1, 1)
-        let fileName = fnamemodify(filePath,":t")
-        let fileNameNoExt = fnamemodify(fileName,":r")
-        if fileNameNoExt is "eslint-lsp"
-            continue
-        endif
-        execute 'source' filePath
-    endfor
-endif
+" if isdirectory(expand("~") . "/.vim/pack/plugins/start/vim-lsp")
+"     for filePath in glob('~/.vim/lsp/*.vim', 1, 1)
+"         let fileName = fnamemodify(filePath,":t")
+"         let fileNameNoExt = fnamemodify(fileName,":r")
+"         if fileNameNoExt is "eslint-lsp"
+"             continue
+"         endif
+"         execute 'source' filePath
+"     endfor
+" endif
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
