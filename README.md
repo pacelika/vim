@@ -1,4 +1,3 @@
 # vim config
 
-Dependancies:<br />
-ripgrep,nodejs <br />
+Dependancies: ripgrep,nodejs <br />

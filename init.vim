@@ -1,3 +1,8 @@
+const MINIMAL_CONF = 0
+
+colorscheme desert
+autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
+
 set allowrevins
 
 set nocompatible
@@ -5,8 +10,11 @@ set lazyredraw
 set ttyfast
 set notimeout ttimeout ttimeoutlen=50
 set nojoinspaces
-set updatetime=100
 set signcolumn=yes
+
+if has("win32") || has("win64")
+    set guifont=Consolas:h18
+endif
 
 set noswapfile
 set nobackup
@@ -53,20 +61,24 @@ set termguicolors
 filetype plugin on
 filetype plugin indent on
 
+source ~/.vim/commentary.vim
+source ~/.vim/auto-pair.vim
 source ~/.vim/clipboard.vim
-source ~/.vim/netrw_conf.vim
 
-source ~/.vim/plugins.vim
-source ~/.vim/lsp.vim
-source ~/.vim/fzf_conf.vim
-source ~/.vim/ale_conf.vim
+if !MINIMAL_CONF 
+    source ~/.vim/plugins.vim
+    source ~/.vim/netrw_conf.vim
+    source ~/.vim/lsp.vim
+    source ~/.vim/fzf_conf.vim
+    source ~/.vim/ale_conf.vim
+else
+    let g:loaded_netrw = 1
+    let g:loaded_netrwPlugin = 1
+endif
 
 autocmd BufLeave,BufWinLeave * silent! mkview
 autocmd BufReadPost * silent! loadview
 
-colorscheme base16-black-metal-gorgoroth
-autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
-
-highlight LineNr guibg=black guifg=gray
-highlight CursorLineNr guibg=black guifg=white
-highlight SignColumn guibg=black
+" highlight LineNr guibg=black guifg=gray
+" highlight CursorLineNr guibg=black guifg=white
+" highlight SignColumn guibg=black
