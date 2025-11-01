@@ -54,7 +54,7 @@ set omnifunc=ccomplete#Complete
 set tags=~/.vim/tags,tags
 
 set background=dark
-set termguicolors
+" set termguicolors
 
 filetype plugin on
 filetype plugin indent on
@@ -64,10 +64,20 @@ source ~/.vim/auto-pair.vim
 source ~/.vim/clipboard.vim
 
 source ~/.vim/plugins.vim
-source ~/.vim/netrw_conf.vim
-source ~/.vim/lsp.vim
-source ~/.vim/fzf_conf.vim
-source ~/.vim/ale_conf.vim
+
+if has('win32') && isdirectory(expand('~') . "/vimfiles/plugged") || has('unix') && isdirectory(expand('~') . '/.vim/plugged')
+    source ~/.vim/netrw_conf.vim
+    source ~/.vim/lsp.vim
+    source ~/.vim/fzf_conf.vim
+    source ~/.vim/ale_conf.vim
+else
+    echom "INFO: Plugins are not installed."
+
+    if has('win32') && filereadable(expand('~') . "/vimfiles/autoload/plug.vim") || has('unix') && filereadable(expand('~') . '/.vim/autoload/plug.vim')
+        execute "PlugInstall"
+        echom "INFO: Installed plugins"
+    endif
+endif
 
 autocmd BufLeave,BufWinLeave * silent! mkview
 autocmd BufReadPost * silent! loadview
