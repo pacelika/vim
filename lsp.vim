@@ -14,16 +14,14 @@ let g:lsp_log_level = 'debug'
 
 set completeopt=menu,menuone,noselect
 
-" if isdirectory(expand("~") . "/.vim/pack/plugins/start/vim-lsp")
-"     for filePath in glob('~/.vim/lsp/*.vim', 1, 1)
-"         let fileName = fnamemodify(filePath,":t")
-"         let fileNameNoExt = fnamemodify(fileName,":r")
-"         if fileNameNoExt is "eslint-lsp"
-"             continue
-"         endif
-"         execute 'source' filePath
-"     endfor
-" endif
+for filePath in glob('~/.vim/lsp/*.vim', 1, 1)
+    let fileName = fnamemodify(filePath,":t")
+    let fileNameNoExt = fnamemodify(fileName,":r")
+    if fileNameNoExt is "eslint-lsp"
+        continue
+    endif
+    execute 'source' filePath
+endfor
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete

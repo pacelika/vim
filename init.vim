@@ -1,5 +1,3 @@
-const MINIMAL_CONF = 0
-
 colorscheme desert
 autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
@@ -65,20 +63,11 @@ source ~/.vim/commentary.vim
 source ~/.vim/auto-pair.vim
 source ~/.vim/clipboard.vim
 
-if !MINIMAL_CONF 
-    source ~/.vim/plugins.vim
-    source ~/.vim/netrw_conf.vim
-    source ~/.vim/lsp.vim
-    source ~/.vim/fzf_conf.vim
-    source ~/.vim/ale_conf.vim
-else
-    let g:loaded_netrw = 1
-    let g:loaded_netrwPlugin = 1
-endif
+source ~/.vim/plugins.vim
+source ~/.vim/netrw_conf.vim
+source ~/.vim/lsp.vim
+source ~/.vim/fzf_conf.vim
+source ~/.vim/ale_conf.vim
 
 autocmd BufLeave,BufWinLeave * silent! mkview
 autocmd BufReadPost * silent! loadview
-
-" highlight LineNr guibg=black guifg=gray
-" highlight CursorLineNr guibg=black guifg=white
-" highlight SignColumn guibg=black
