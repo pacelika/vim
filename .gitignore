@@ -1,4 +1,6 @@
 pack/
 view/
+plugged/
+autoload/
 .netrwhist
 coc-settings.json
