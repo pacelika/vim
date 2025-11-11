@@ -1,6 +1,3 @@
-colorscheme desert
-autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
-
 set allowrevins
 
 set nocompatible
@@ -53,8 +50,11 @@ set showmatch
 set omnifunc=ccomplete#Complete
 set tags=~/.vim/tags,tags
 
+colorscheme sunbather
+autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
+
 set background=dark
-" set termguicolors
+set termguicolors
 
 filetype plugin on
 filetype plugin indent on

@@ -16,6 +16,8 @@ if has('win32') && isdirectory(expand('~') . "/vimfiles/autoload") || has('unix'
         Plug 'tpope/vim-fugitive'
         Plug 'airblade/vim-gitgutter'
         Plug 'tpope/vim-surround'
+
+        Plug 'Angluca/nim.vim'
         call plug#end()
     else
         echom "ERROR: Failed to auto install autoload/plug.vim"

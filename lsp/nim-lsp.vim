@@ -1,7 +1,7 @@
-if executable('nimlsp')
+if executable('nimlangserver')
     au User lsp_setup call lsp#register_server({
-        \ 'name': 'nimlsp',
-        \ 'cmd': {server_info->['nimlsp']},
+        \ 'name': 'nimlangserver',
+        \ 'cmd': {server_info->['nimlangserver']},
         \ 'allowlist': ['nim','nims','nimble'],
         \ })
 endif
