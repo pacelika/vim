@@ -50,7 +50,12 @@ set showmatch
 set omnifunc=ccomplete#Complete
 set tags=~/.vim/tags,tags
 
-colorscheme sunbather
+if has('win32') && filereadable(expand('~') . "/vimfiles/colors/sunbather.vim")
+    colorscheme sunbather
+elseif has('unix')
+    colorscheme sunbather
+endif
+
 autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
 set background=dark
