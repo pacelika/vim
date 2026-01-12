@@ -1,3 +1,5 @@
+let g:config_dir = expand('<sfile>:p:h')
+
 set allowrevins
 
 set nocompatible
@@ -64,17 +66,16 @@ set termguicolors
 filetype plugin on
 filetype plugin indent on
 
-source ~/.vim/commentary.vim
-source ~/.vim/auto-pair.vim
-source ~/.vim/clipboard.vim
-
-source ~/.vim/plugins.vim
+execute 'source ' . g:config_dir . '/commentary.vim'
+execute 'source ' . g:config_dir . '/auto-pair.vim'
+execute 'source ' . g:config_dir . '/clipboard.vim'
+execute 'source ' . g:config_dir . '/plugins.vim'
 
 if has('win32') && isdirectory(expand('~') . "/vimfiles/plugged") || has('unix') && isdirectory(expand('~') . '/.vim/plugged')
-    source ~/.vim/netrw_conf.vim
-    source ~/.vim/lsp.vim
-    source ~/.vim/fzf_conf.vim
-    source ~/.vim/ale_conf.vim
+    execute 'source ' . g:config_dir . '/netrw_conf.vim'
+    execute 'source ' . g:config_dir . '/lsp.vim'
+    execute 'source ' . g:config_dir . '/fzf_conf.vim'
+    execute 'source ' . g:config_dir . '/ale_conf.vim'
 else
     echom "INFO: Plugins are not installed."
 
