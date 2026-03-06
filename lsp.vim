@@ -4,22 +4,17 @@ let g:lsp_diagnostics_enabled = 0
 let g:lsp_format_sync_timeout = 1000
 let g:lsp_timeout = 1000
 let g:lsp_automatic_setup = 1
-" autocmd CursorHold * LspHover
 
 if !has('win32') || !has('win64')
     let g:lsp_log_file = '/tmp/lsp.log'
 endif
-
-let g:lsp_log_level = 'debug'
 
 set completeopt=menu,menuone,noselect
 
 for filePath in glob('~/.vim/lsp/*.vim', 1, 1)
     let fileName = fnamemodify(filePath,":t")
     let fileNameNoExt = fnamemodify(fileName,":r")
-    if fileNameNoExt is "eslint-lsp"
-        continue
-    endif
+
     execute 'source' filePath
 endfor
 

@@ -52,11 +52,7 @@ set showmatch
 set omnifunc=ccomplete#Complete
 set tags=~/.vim/tags,tags
 
-if has('win32') && filereadable(expand('~') . "/vimfiles/colors/sunbather.vim")
-    colorscheme sunbather
-elseif has('unix')
-    colorscheme sunbather
-endif
+colorscheme desert
 
 autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
@@ -72,10 +68,7 @@ execute 'source ' . g:config_dir . '/clipboard.vim'
 execute 'source ' . g:config_dir . '/plugins.vim'
 
 if has('win32') && isdirectory(expand('~') . "/vimfiles/plugged") || has('unix') && isdirectory(expand('~') . '/.vim/plugged')
-    execute 'source ' . g:config_dir . '/netrw_conf.vim'
     execute 'source ' . g:config_dir . '/lsp.vim'
-    execute 'source ' . g:config_dir . '/fzf_conf.vim'
-    execute 'source ' . g:config_dir . '/ale_conf.vim'
 else
     echom "INFO: Plugins are not installed."
 
