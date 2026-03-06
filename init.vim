@@ -52,12 +52,12 @@ set showmatch
 set omnifunc=ccomplete#Complete
 set tags=~/.vim/tags,tags
 
-colorscheme desert
-
-autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
-
-set background=dark
 set termguicolors
+set background=dark
+
+colorscheme desert
+autocmd ColorScheme * highlight EndOfBuffer ctermbg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
 
 filetype plugin on
 filetype plugin indent on
@@ -65,18 +65,7 @@ filetype plugin indent on
 execute 'source ' . g:config_dir . '/commentary.vim'
 execute 'source ' . g:config_dir . '/auto-pair.vim'
 execute 'source ' . g:config_dir . '/clipboard.vim'
-execute 'source ' . g:config_dir . '/plugins.vim'
-
-if has('win32') && isdirectory(expand('~') . "/vimfiles/plugged") || has('unix') && isdirectory(expand('~') . '/.vim/plugged')
-    execute 'source ' . g:config_dir . '/lsp.vim'
-else
-    echom "INFO: Plugins are not installed."
-
-    if has('win32') && filereadable(expand('~') . "/vimfiles/autoload/plug.vim") || has('unix') && filereadable(expand('~') . '/.vim/autoload/plug.vim')
-        execute "PlugInstall"
-        echom "INFO: Installed plugins"
-    endif
-endif
+execute 'source ' . g:config_dir . '/lsp.vim'
 
 autocmd BufLeave,BufWinLeave * silent! mkview
 autocmd BufReadPost * silent! loadview
